@@ -1,17 +1,17 @@
 import { initializeApp } from "firebase/app";
-import { gerFirestore } from 'firebase/firebase'
+import { getFirestore } from 'firebase/firestore/lite'
 
 const firebaseConfig = {
-  apiKey: "AIzaSyD1LFlyLhJPVlJ1P3ASX7f_wcvcj1CDhaM",
-  authDomain: "miniblog-b593d.firebaseapp.com",
-  projectId: "miniblog-b593d",
-  storageBucket: "miniblog-b593d.appspot.com",
-  messagingSenderId: "1075835626942",
-  appId: "1:1075835626942:web:b764731b43e48ba8e685ef"
+  apiKey: "AIzaSyBYeJIcdE-OTuq0aCHIAOnSLNL09xNgMco",
+  authDomain: "miniblog-d1773.firebaseapp.com",
+  projectId: "miniblog-d1773",
+  storageBucket: "miniblog-d1773.appspot.com",
+  messagingSenderId: "912073027603",
+  appId: "1:912073027603:web:ed5d55d1f16b0eb9e00fe6"
 };
 
 const app = initializeApp(firebaseConfig);
 
 const db = getFirestore(app)
 
-export { db }
+export { app, db }
