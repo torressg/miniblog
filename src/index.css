@@ -105,8 +105,12 @@ textarea {
   background-color: #dc3545;
 }
 
-button [disabled] {
+button:disabled {
   background-color: #AAA;
+}
+button:disabled:hover {
+  background-color: #AAA;
+  cursor: not-allowed
 }
 
 .container .error {

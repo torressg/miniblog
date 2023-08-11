@@ -92,7 +92,8 @@ export const Register = () => {
             onChange={(e) => setConfirmPassword(e.target.value)}
           />
         </label>
-        <button className='btn'>Cadastrar</button>
+        {!loading && <button className='btn'>Cadastrar</button>}
+        {loading && <button className='btn' disabled>Aguarde</button>}
         <div className="container">
           {error && <p className="error ">{error}</p>}
         </div>
