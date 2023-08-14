@@ -41,7 +41,7 @@ export const useAuthentication = () => {
             await updateProfile(user, {
                 displayName: data.displayName
             })
-            
+
             setLoading(false)
 
             return user
@@ -51,7 +51,7 @@ export const useAuthentication = () => {
 
             let systemErrorMsg
 
-            if(error.message.includes("Password")) {
+            if (error.message.includes("Password")) {
                 systemErrorMsg = "A senha precisa conter ao menos 6 caracteres."
             } else if (error.message.includes("email-already")) {
                 systemErrorMsg = "E-mail já cadastrado"
@@ -65,6 +65,41 @@ export const useAuthentication = () => {
         setLoading(false)
     }
 
+    const logout = () => {
+
+        checkIfIsCancelled()
+
+        signOut(auth)
+    }
+
+    const login = async (data) => {
+
+        checkIfIsCancelled()
+
+        setLoading(true)
+        setError(false)
+
+        try {
+            await signInWithEmailAndPassword(auth, data.email, data.password)
+            setLoading(true)
+
+        } catch (error) {
+            console.log(error.message)
+
+            let systemErrorMsg
+
+            if (error.message.includes("user-not-found")) {
+                systemErrorMsg = "Usuário não encontrado."
+            } else if (error.message.includes("wrong-password")) {
+                systemErrorMsg = "Senha incorreta."
+            } else {
+                systemErrorMsg = "Houve um erro. Contate o Administrador."
+            }
+            setError(systemErrorMsg)
+            setLoading(false)
+        }
+    }
+
     useEffect(() => {
         return () => setCancelled(true)
     }, [])
@@ -74,5 +109,7 @@ export const useAuthentication = () => {
         createUser,
         error,
         loading,
+        logout,
+        login,
     }
 }
